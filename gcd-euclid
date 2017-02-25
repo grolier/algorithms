@@ -1,0 +1,17 @@
+/*
+GREATEST COMMON DIVISOR (GCD)
+see euclid
+*/
+
+function greatestCommonDivisor(num1,num2){
+  let diffy = num1 > num2 ? num1 - num2:num2 - num1;
+  let gcd = num1 > num2 ? num1:num2;
+  
+  if(diffy % gcd === 0 && num1 % gcd === 0 && num2 % gcd === 0){
+    return gcd;
+  }else{
+    return greatestCommonDivisor(num1 - 1, num2 - 1);
+  }
+  return gcd;
+}
+greatestCommonDivisor(8,12);
