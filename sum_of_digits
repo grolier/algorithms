@@ -1,0 +1,16 @@
+/*
+SUM OF DIGITS
+*/
+
+function sumOfDigits(num){
+  var counter = 0;
+  var remainder = num % 10;
+  
+  if(num % 10 === 0){
+    return counter;
+  }else{
+    counter += remainder;
+  }
+  return counter += sumOfDigits((num-remainder)/10);
+}
+sumOfDigits(1234);
