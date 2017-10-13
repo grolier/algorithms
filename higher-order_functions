@@ -1,0 +1,35 @@
+function reduceRight(arr, starting, func){											
+												   
+		for(var i = arr.length; i >= 0; i -=1){
+			function reduce(arr[i]){					//reduce takes each element in array and reassigns the value to the reverse index
+				arr[i-arr.length]=func(i);
+			}
+			reduce(arr[i]);
+		}
+
+		if(starting === number){						//defines rules to print transformed array
+			return number += arr.forEach(
+				function(ele){
+					return number += ele;
+				});
+		}else if(Array.isArray(starting) && starting.length = 0){
+			return arr.slice();
+		}else{
+			return '{'+ arr + '}';
+		}
+}
+
+function reduceRight(arr, starting, func){
+	if(arr.length === 0){
+		return starting;
+	}else{
+		if(starting === number){
+			starting += func(arr[-1]) += reduceRight(arr.slice(0,-2),starting, func);
+		}else if(Array.isArray(starting) && starting.length = 0){
+			starting.unshift(func(arr[-1])) += reduceRight(arr.slice(0,-2),starting,func);
+		}else{
+			starting + func(arr[-1]) += reduceRight(arr.slice(0,-2),starting,func);
+		}	
+	}
+	return starting;
+} 
