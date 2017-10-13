@@ -1,0 +1,14 @@
+function alternate(func){
+	return function(func){
+		alternate(func);
+	}
+}
+
+function twice(func){
+	return function twice(func){
+		if(twice(func) % 2 === 0){
+			return twice(func);
+		}
+		return 0;
+	};
+}
