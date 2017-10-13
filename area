@@ -1,0 +1,9 @@
+function Rectangle(color, height, width){     //function for inputs
+	this.color = color;
+	this.height = height;
+	this.width = width;
+}
+
+Rectangle.prototype.getArea= function(){      //simple two-dimensional multiplication
+	return this.width * this.height;
+};
