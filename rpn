@@ -1,0 +1,57 @@
+function RPNCalculator(){										                  //stack
+	this.stack = [];
+}
+
+RPNCalculator.prototype.push = function(value){					      //input
+	this.stack.push(value);
+};
+
+RPNCalculator.prototype.popcompute = function(operatorfunc){	//generic function operator
+	if(this.stack.length < 2 ){
+		throw 'rpnCalculatorInstance is empty';
+	}else{
+		var num1 = this.stack.pop();
+		var num2 = this.stack.pop();
+		this.push(operatorfunc(num1,num2));
+	}
+};
+
+
+
+
+RPNCalculator.prototype.plus = function(){ 						         //plus operator
+	var add = function (a,b){
+		return b + a;
+	};
+	this.popcompute(add);
+};
+
+RPNCalculator.prototype.minus = function(){						        //subtract operator
+	var subtract = function(a,b){
+		return b - a;
+	};
+	this.popcompute(subtract);
+}
+
+RPNCalculator.prototype.times = function(){						        //multiplication operator
+	var multiplies = function(a,b){
+		return b * a;
+	};
+	this.popcompute(multiplies);
+}
+
+RPNCalculator.prototype.divide = function(){					        //division operator
+	var divide = function(a,b){
+		return b / a;
+	}
+	this.popcompute(divide);
+}
+
+RPNCalculator.prototype.value = function(){						        //returns the top value
+	return this.stack[this.stack.length-1];
+}
+
+
+
+
+
