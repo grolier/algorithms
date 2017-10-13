@@ -1,0 +1,61 @@
+function factorial(num){
+	var sum = 1;				
+
+	while(num>0){
+		sum *= num;
+		num -= 1;
+	}
+	return sum;
+}
+
+function factorialRecursion(num){
+	var sum = 1;
+
+	if(num === 0){
+		return sum;
+	}
+	return sum *= factorialRecursion(num-1);
+}
+
+
+
+function fib(num){
+	if(num < 2){
+		return 1;
+	}
+	return (fib(n-1) + fib(n-2));
+}
+
+
+function type(value){
+	Object.prototype.toString.call(value).slice(8,-1);
+}
+
+function stringify(object){
+
+	type(object) === 'Function'? object + '';
+	type(object) === 'Null'? object + '';
+	type(object) === 'Boolean'? object + '';
+	type(object) === 'Number'? object + '';
+	type(object) === 'Undefined'? object + '';
+	type(object) === 'String'? '"' + object + '"';
+
+	if(type(object) === 'Array'){
+		return '[' + object.map(function(obj){
+			return stringify(obj);
+		}).join(',') +']';
+	}
+
+	if(type(object) === 'Object'){
+		var container = [];
+
+		Object.keys(object).forEach(function(key)){
+			var value = stringify(object[key]);
+			if(value !== null){
+				container.push('"' + key + '":' + value);
+			}
+		};
+		return '{' + container.join(',') + '}';
+	}
+}
+
