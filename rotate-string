@@ -1,0 +1,11 @@
+function rotater(str){
+
+	return function rotate(num){
+		var remainder = (str.length - num) % str.length;
+
+		if(remainder !== 0){													
+			return str.slice(str.indexOf(remainder *= -1)).concat(str.shift(0,remainder *= -1));
+		}
+	};
+
+}
