@@ -1,0 +1,17 @@
+function compares(a,b){
+	return a > b;
+}
+
+function recSmallestInt(arr){
+	var smallest;
+
+	if(arr.length === 0){
+		return smallest;
+	}else{
+		if(compares(arr[0],arr[1])){
+			smallest = arr[1];
+		}
+		smallest = arr[0];
+	}
+	recSmallestInt(arr.slice(1));
+}
