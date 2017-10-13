@@ -1,0 +1,13 @@
+function accessor(object){
+	return function findProperties(object, value){
+		for(var k in object){
+			if(Object.hasOwnProperty(k)){
+				if(object[value]){
+					return object[k];
+				}else{
+					return object[k] = value;
+				}
+			}
+		}
+	};
+}
