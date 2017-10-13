@@ -1,0 +1,13 @@
+function newObj(LittleMouse){																
+	var newobj ={};											                //1. empty object property
+	newObj.__proto__ = LittleMouse.prototype;				    //2. prototype inheritance, PBR
+	LittleMouse = Object.create(newObj.prototype);			//3. functions are objects that are callable
+	return newObj;											                //4. method returns a function that takes a function as an argument
+}
+
+
+function newObj(LittleMouse){								          //modern newObj solution
+	var newObj = Object.create(LittleMouse.prototype);
+	newObj.LittleMouse = LittleMouse;
+	return newObj;
+}
