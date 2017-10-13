@@ -1,0 +1,33 @@
+function Laptop(year, hd){
+	var newObj = Object.create(Laptop.prototype);
+	newObj[year] = year;
+	newObj[hd] = hd;
+	return newObj;
+}
+
+Laptop.prototype.checkSpecs = function(newObj){
+	for(var k in newObj){
+		if(Object.hasOwnProperty(k)){
+			return k = newObj[k];
+		}
+	}
+} 
+
+function Macbook(Laptop,color){
+	this.Laptop.color = color;
+}
+
+function extendWithObjectCreate(funcs){
+	var args = Array.prototype.slice.call(arguments,1);
+	var obj = {}
+	
+	for(var i = 0; i < args.length; i += 1){
+		(function(arg){
+			return obj[arg] = func(arg);
+		})(args[i]);
+	}
+	return obj;
+});
+
+
+
