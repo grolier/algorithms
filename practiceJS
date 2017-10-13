@@ -1,0 +1,288 @@
+
+/* Even Speech/Breathalyzer/Arrayifying Objects/Discussion Comments/Binary Search */
+/*
+More Practice
+learn.fullstackacademy.com
+
+Even Speech
+
+Create a function that takes a string of words (no punctuation, each word is separated by a space) and returns the string with only words of an even length. Any words with an odd length should have their last letter duplicated to even it out.
+
+Example:
+evenIt('Hello my name is Karen')
+// => 'Helloo my name is Karenn'
+*/
+'use strict';
+
+var string = 'You look beautiful today.';
+
+var newString = function parseString(string){
+	return string.replace(/(~|'|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|\"|'|<|,|\.|>|\?|\/|\\|\||-|_|\+|=)/g,' ');
+};
+
+var forceEven = function makeEven(newString){
+	var output = '';
+	var start = 0; //could be misconstrued as a falsey
+	var end;
+	var temp;
+
+	if(start > newstring.length -1){
+		return output;
+	}else{
+		end = newString.indexOf(' ',start);
+		if((end-start) % 2 !== 0){
+			output += newString.slice(start,end).concat(newString[end-1]+ ' ');
+		}else{
+			ouptut += newString.slice(start,end) + ' ';
+		}
+		temp = newString.indexOf(' ', end);
+		start = temp + 1;
+		return output += makeEven(newString.slice(start));
+	}
+	return output;
+};
+forceEven(newString(newString(string));
+
+/*
+More Practice
+learn.fullstackacademy.com
+
+Breathalyzer?
+
+This is one way to calculate Blood Alcohol Content (BAC):
+
+BAC = (Total alcohol (in ounces) consumed X 5.14)/ (Body weight (in pounds) X the alcohol distribution ratio) - 0.15 X Hours elapsed since consumption
+BAC(%) = (A X 5.14)/ (W X r) -.015 X H
+
+The alcohol distribution ratio differs, 0.73 for man, and 0.66 for women.
+
+Create a function getBAC() that accepts the parameters: weight (W), sex (S), numberDrinks (N), typeAlcohol (D), and hours (H).
+
+For the purpose of this function, typeAlcohol is coded as either 'beer' or 'whiskey'. Presume the former is 8 ounces and 4% alcohol by volume. The latter is 4 ounces and 32% alcohol by volume.
+
+You might wonder why weight and sex matters in this calculation. It's because the rate at which a person can metabolize alcohol is dependent on the amount of the enzyme alcohol dehydrogenase that's in the blood! And that amount differs between the sexes.
+
+Example:
+(125,'M',4,'whiskey', 1) => 0.304
+*/
+
+var approxBAC = function getBAC(W,S,N,D,H){
+	var R ={
+		'M': 0.73, //male metabolism ratio
+		'F': 0.66 //female metabolism ratio
+		};
+
+	var T ={
+		'whisky':(4*0.40), //alcohol consumed per 4 ounce serving
+		'beer':(8*0.04) //alcohol consumed per 8 ounce serving
+		};
+
+	var bac = function(X){
+		if(!isNaN(X)){
+			if(X>2){return 'not valid, try entries again';}
+			var bacObj ='';
+			//decimal
+			while(bacObj.length<6){
+				var Y =((X*10)-X)-(((X*10)-X)%2); 
+				if(Y===0){ //placeholder '0'
+					bacObj += '0';
+					X*=10;
+				}else{ //
+					y=((X*100000)-X)-(((X*100000)-X)%2);
+					bacObj +=Y;
+				}
+			}
+			//integer
+			if(X<1){
+				return '0.'+bacObj.slice(0,3) + ' BAC';
+			}
+			return bacObj.slice(0,1)+'.'+bacObj.slice(1,4)+' BAC';
+		}
+		return 'not valid, try entries again';
+	};
+	var X = (T[D] * N * 5.14)/(W * R[S]) - (.015 * H));
+	return bac(X);
+};
+approxBAC(111,'F',6,'beer',4);
+
+/*
+More Practice
+learn.fullstackacademy.com
+
+Arrayifying Objects
+
+Write a function that takes a nested object parameter and returns a multi-dimensional array.
+
+*/
+var someObject ={
+	 c1 :{
+	 	c1a :['ab','cd','ef'],
+	 	c1b :['bc','de','fg'],
+	 	c1c :['gh']
+	 },
+	 yio :['lwi','awx'],
+	 fqu :{
+		v1p :['iuy','fie','mbc'],
+		rie :['exp','fke','vwq']
+	 }
+}
+
+
+var newArray = function modArray(someObject){
+	var objArray =[];
+
+	for (var k in someObject){
+		if(Array.isArray(someObject[k])){
+			objArray.push(k, someObject[k]);
+		}else{
+			objArray.push(k, newArray(someObject[k]));
+		}
+	}
+	return objArray;
+};
+newArray(someObject);
+
+/*
+More Practice
+learn.fullstackacademy.com
+
+Discussion Comments
+
+Create a function that takes a nested comment object, similar to those found after articles et al, in order to return the number of unique 'responses'. For the purpose of this function, there are three headings common to all comments: 'name', 'date', and 'comment'. The function should return a number for all replies to a named discussion.
+
+Example:
+
+var thread = {
+  "title" : "How to Learn Javascript",
+  "body" : "What do you suggest?",
+  "replies" : [ // total reply count : 6
+    {
+      "title" : "Practice, practice, practice",
+      "body" : "It's like anything else",
+      "replies" : [] //reply count : 0
+    },
+    {
+      "title" : "Dude, just learn Ruby",
+      "body" : "They're practically the same thing",
+      "replies" : [ //reply count : 2
+        {
+            "title" : "Wtf?",
+            "body" : "You have no idea what you're saying",
+            "replies" : [] //reply count 0
+        },
+        {
+            "title" : "Nope",
+            "body" : "Ruby is a good language, but super different from JS",
+            "replies" : [] //reply count 0
+        },
+      ]
+    },
+    {
+      "title" : "Coding bootcamps are great too",
+      "body" : "I went to Fullstack Academy and now I work as a developer",
+      "replies" : [ // reply count : 1
+        {
+            "title" : "Can Confirm",
+            "body" : "Went to FSA, no I'm a badass",
+            "replies" : [] //reply count : 0
+        }
+      ]
+    }
+  ]
+};
+
+repliesCount(thread)   // => 6
+
+*/
+
+var discussion = {
+	'heading': 'How to manufacture a fan helmet',
+	'byline' : 'helmet maker',
+	'responses':[ // 2 comments
+		{
+			'heading':'How to apply ice to bruise',
+			'byline': 'dr beekman',
+			'responses':[] //0 comments
+		},{
+			'heading': 'How to get the best extension from your danurasana pose',
+			'byline': 'teacher',
+			'responses':[ //1 comments
+				{
+					'heading': 'Thoroughly enjoyed the pointers',
+					'byline': 'newbie',
+					'responses': [ //3 comments
+						{
+							'heading': 'Felt like an entirely different pose',
+							'byline': 'injured but improving',
+							'responses': []
+						},{
+							'heading': 'Explain how to exit pose',
+							'byline':'falls out too easily',
+							'responses':[]
+						},{
+							'heading':'Great abdominal activation',
+							'byline': 'gym goer',
+							'responses':[]
+						}		
+					]
+				}
+			]
+		}
+	]
+}; //total 6 comments
+
+var comments = function responseCount (discussion){
+	var comment = 0;
+
+	for(var k in discussion){
+		if(typeof k == 'object' && discussion[k] !== null){
+			return comments(discussion[k].slice(1));
+		}else{
+			comment += discussion.responses.length;
+		}
+	}
+	return comment;
+};
+comments(discussion);
+
+/*
+More Practice
+learn.fullstackacademy.com
+
+
+
+Write a function search that takes in a sorted array and an integer and returns a boolean indicating whether the integer is present within the array. The inputted array here is necessarily sorted, a property we can leverage to significantly speed up our search algorithm.
+
+You will implement an algorithm known as binary search. It works by comparing the target value to the middle element of the array. If they are equal, the search was successful. If the middle value is greater than the target value, then the lower half of the array becomes the new subarray for searching, and the top half is eliminated. If the middle value is less than the target value, then the upper half of the array becomes the new subarray for searching, and the lower half is eliminated. This process continues until either the target value is found or the search space becomes empty (via repeated halving operations).
+
+Why is binary search log(n)? Every time you double the number of nodes you only increase the number of steps to solution by one. To extend this, four times the nodes gives two extra steps. Eight times the nodes gives three extra steps. Sixteen times the nodes gives four extra steps. And so on.
+
+Example
+search([1,2,4,5], 5)
+// -> true
+
+search([1,5,15], 13)
+// -> false
+
+*/
+
+
+var binarySearch = function search(sortedArray, integer){
+	var start = 0;
+	var end = sortedArray.length -1;
+
+	while(start <= end){
+		var middle = Math.floor((end-start)/2);
+		if(integer === sortedArray[start + middle]){
+			return true;
+		}else if (sortedArray[start+middle] > integer){
+			end = middle - 1;
+		}else{
+			start = middle + 1;
+		}
+	}
+	return false;
+};
+
+
+
