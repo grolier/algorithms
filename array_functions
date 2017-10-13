@@ -1,0 +1,8 @@
+function createFunctions(num, fn){
+	var funcArray = [];
+	while(num > 0){
+		funcArray.push(function(){return num;});
+		num -=1;
+	}
+	return funcArray;
+}
