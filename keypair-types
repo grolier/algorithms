@@ -1,0 +1,8 @@
+function threeTimes(arg){
+	return Object.keys(arg).forEach(function(key){
+		if(isNaN(key)){
+			throw 'We expect value to be Nan because we cannot add undefined to a number';
+		}
+		return arg[key] + '' + arg[key] + '' + arg[key]+ '';
+	});
+}
