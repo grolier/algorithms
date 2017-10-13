@@ -1,0 +1,281 @@
+/*
+BCP: JS in Browser
+learn.fullstackacademy.com
+
+Shopping Lists
+
+We're always shopping for groceries. To make sure we don't double buy things, we make a special trip to the grocery store where we get items on both of our shopping lists. But it's hard to go through our shopping lists and find the items we both want.
+
+For example, if we have two lists myList and roommatesList, it will give us a list that only contains items on both lists. Let's look at an example
+
+myList = apples, bananas, oranges, pears
+roommatesList = apples, cheese, crackers, oranges
+
+The combined list should return [apples, oranges]
+
+Our program should be a single function that will take as it's argument two arrays, and from that it return us an array of the items that appear in both lists.
+*/
+
+var list1 =['chicory', 'kale', 'hummus', 'eggs', 'bellpeppers','cheese'];
+
+var list2 =['kale', 'eggs', 'parsley', 'bellpeppers', 'cheese'];
+
+var groceryList = function findDuplicates(list1,list2){
+	var groceryList =[];
+
+	if(Array.isArray(list1)){
+		if(list1.length <= list2.length){
+			for (var i = 0; i < list1.length; i +=1){
+				if(list1.indexOf(list2[i]) !== -1){
+					groceryList.push(list2[i]);
+				}
+			}
+
+		}else{
+			for (var j = 0; j < list2.length; j +=1){
+				if(list2.indexOf(list1[j]) !== -1){
+					groceryList.push(list1[j]);
+				}
+			}
+		}
+	}
+	return groceryList;
+};
+groceryList(list1, list2);
+
+
+/*
+BCP: JS in Browser
+learn.fullstackacademy.com
+
+Check Array is Ranked
+
+Write the function isRanked, which takes an array as an input and outputs a boolean indicating if the array's contents are ascending.
+
+Example:
+isRanked([8,2,3,4]) // false
+isRanked([2,3,4,8]) // true
+
+*/
+
+var lowToHigh = function isRanked(array){
+	var i = 0; 
+	while(i < array.length){
+		if(array[i] > array[i+1]){
+			return true;
+		}
+		i += 1;
+	}
+	return true;
+};
+lowToHigh([2,3,4,9]);
+
+/*
+
+BCP: JS in Browser
+learn.fullstackacademy.com
+
+Letter Frequency
+
+We want a function that tells us how many times each letter appears in a string. The function will return an object whose keys represent each letter and the values represent how many times that letter appeared.
+
+Example:
+letterFrequency('hi there!');
+// -> {
+//      h: 2,
+//      i: 1,
+//      " ": 1,
+//      t: 1,
+//      e: 2,
+//      r: 1,
+//      '!': 1
+//    }
+*/
+
+var tallyStr = function letterFrequency(string){
+	var obj ={};
+
+	for (var i = 0; i < string.length; i +=1){
+		if(obj[string[i]]){
+			obj[string[i]] +=1;
+		}else{
+			obj[string[i]] =1;
+		}
+	}
+	return obj;
+};
+tallyStr('pajorative');
+
+/*
+
+BCP: JS in Browser
+learn.fullstackacademy.com
+
+Anagram
+
+Write a function that takes in two strings and determines if they are anagrams of each other. Two words are anagrams if each can be formed by rearranging the letters of the other.
+
+For example ekez is an anagram of zeke. zkee is also an anagram of zeke.
+
+Your function should return true or false.
+
+*/
+
+var isAnagram = function anagram(string1, string2){
+	if(string1.length === string2.length){
+		var str = string1.split('');
+		for(var i = 0; i < str.length; i += 1){
+			if(str.indexOf[string2[i]] !== -1){
+				return true;
+			}
+			return false;
+		}
+	}
+	return false;
+};
+isAnagram('simon','monis');
+
+/*
+
+BCP: JS in Browser
+learn.fullstackacademy.com
+
+Inception
+
+Leonardo Dicaprio is stuck inside a dream. The dream that he's stuck in may actually be inside another dream, which may be inside another dream.. Our job is to figure out how many dreams deep Leo is. A dream, you might have guessed, looks like this: [].
+
+Write a function called inception that takes Leo inside his dream situation (an array, possibly multidimensional, with Leo in the middle) as a parameter, and returns a number that represents how many dreams deep Leo is. Your function may also take additional optional parameters if you wish.
+
+Examples: inception(['Leo']) ==> 1 inception([['Leo']]) ==> 2 inception([[['Leo']]]) ==> 3 and so on...
+*/
+
+var findCenter = function incept(array){
+	var count = 0;
+
+	if(typeof array[0] === 'string'){
+		return count + 1;
+	}else{
+		if(typeof array[0] === 'object' && array[0] !== null){
+		count += array.length;
+		return count += findCenter(array[0]);
+		}
+	}
+	return count + 1;
+};
+findCenter([[[[['You']]]]]);
+
+/*
+BCP: JS in Browser
+learn.fullstackacademy.com
+
+Zookeeper
+
+You're a zookeeper writing a program to keep track of how many animals each eat type of food. Write a function that takes in two parameters. The first parameter is an array of objects containing data about a zoo. An example array is provided below.
+
+var animals =[
+  {
+    name: 'Claire',
+    species: 'llama',
+    foods: ['alfalfa', 'grass', 'tender shoots']
+  },
+  {
+    name: 'Daisy',
+    species: 'cow',
+    foods: ['grass', 'worms']
+  },
+  {
+    name: 'Carl',
+    species: 'goat',
+    foods: ['grass', 'worms', 'tender shoots']
+  }
+];
+
+The second parameter is a string representing a food. Your task is to determine how many animals like the food that was passed in.
+
+animalFeed(animals, 'tender shoots');
+// 2
+*/
+
+var mammalsEtc = [
+	{
+		name: 'Oryx',
+		species: 'oryx',
+		foods: ['roots', 'shrubs', 'melons','leaves']
+	},{
+		name: 'DungBeetle',
+		species: 'onthophagus',
+		foods: ['mushrooms','dung','leaves']
+	},{
+		name: 'Fisher',
+		species: 'Martes pennanti',
+		foods:['hare','porcupine','insects','bobcats']
+	}
+];
+var toFeed = function findItems(array, item){
+	var count = 0;
+
+	if(Array.isArray){
+		for( var i = 0; i < array.length; i += 1){
+			var totItems = array[i].foods;
+			for (var j = 0; j < totItems.length; j += 1){
+				if(totItems[j] === item){
+					count += 1;
+				}
+			}
+		}
+		return count; 
+	}	
+	return null;
+};
+toFeed(mammalsEtc,'leaves');
+
+/*
+
+BCP: JS Browser
+learn.fullstackacademy.com
+
+Implement Sort
+
+Write a function mySort that accepts an array and a callback function that is used to create a sorted copy of the array. Try to mirror the functionality of the native .sort() array method as closely as possible.
+
+To start with, do not worry about implementing a default sort the way the native .sort() method does. 
+
+Remember, your mySort function should change the array passed in as an argument, and return that array.
+
+function greaterThan(num1, num2) { return num1 > num2 }
+
+var arr = [5,2,3,1,4];
+var sortedArr = mySort(arr, greaterThan);
+
+console.log(sortedArr)    // [1,2,3,4,5]
+console.log(arr)    // [1,2,3,4,5]
+*/
+
+var compareTwo = function firstOr(n,n1){
+	return n > n1; 
+};
+
+var arrange = function nCollection(array, compareTwo){
+	var swap = true;
+
+	while(swap){
+		swap = false;
+		var position = 0;
+		while(array.length-1 > position){
+			if(compareTwo(array[position],array[position +1])){
+				var high = array[position];
+				array[position] = array[position +1];
+				array[position +1]=high;
+				swap = true;
+			}
+			position += 1;
+		}
+	}
+	return array;
+};
+arrange([3,6,8,3,2,6,1], compareTwo);
+
+
+
+
+
