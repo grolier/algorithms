@@ -1,0 +1,6 @@
+function runNumTimes(func,num){
+	while(num > 0){
+		func();
+		num -= 1;
+	}
+}
