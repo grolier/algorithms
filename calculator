@@ -1,0 +1,21 @@
+
+function createCalculator(t){
+
+	var calculator ={
+		sum : 0,
+		add : function(t){
+			this.sum += t;
+		},
+		subtract : function(t){
+			this.sum -= t;
+		},
+		value : function(){
+			return this.sum;
+		},
+		clear : function(){
+			return this.sum -= this.sum;
+		}
+	};
+	return calculator;
+
+}
