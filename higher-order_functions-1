@@ -1,0 +1,13 @@
+function sometimes(arguments){
+	var add = Array.prototype.slice.call(arguments, 1).join(',');
+	console.log(add);
+	return add.map(function printAdd(ele){
+		return function add(ele){
+				if(add.indexOf(ele) === 3 || !(ele %= 2)){
+					return "iDoNotk";
+				}else{
+					return ele;
+				}
+		}
+	});
+}
