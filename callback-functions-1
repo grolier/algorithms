@@ -1,0 +1,34 @@
+function findObjPropsHasOwn(object){
+	var objStr = '';
+
+	for(var k in object){
+		if(Object.hasOwnProperty(k) && object.length > 1){
+			objStr += k;
+			objStr.concat(', ');
+		}
+		objStr += k;
+	}
+	return objStr;
+
+	//return Object.getOwnPropertyNames(object).toString(); 
+}
+
+function Rectangle(color, height, width){
+	this.color = color;
+	this.height = height;
+	this.width = width;
+}
+
+function findObjKeys(object){
+	var objStr = '';
+
+	for(var k in object){
+		if(!Object.keys && object.length > 1){
+			objStr += k ;
+			objStr.concat(', ');
+		}
+		objStr += k;
+	}
+
+	return objStr;
+}
