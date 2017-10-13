@@ -1,0 +1,26 @@
+
+function setPropsOnObj(object){
+	console.log(object.x = 7);
+	console.log(object['y'] = 8);
+	object.onePlus = function(onePlus){ 
+			return onePlus += 1;
+			};
+}
+
+function setPropsOnArr(arrayObject){
+	console.log(arrayObject.hello = function(){ return 'Hello!';});
+	console.log(arrayObject['full'] = 'stack');
+	console.log(arrayObject[0] = 5);
+	arrayObject.twoTimes= function(twoTimes){
+		return twoTimes *= 2;
+		};
+}
+
+function setPropsOnFunc(functionObject){
+	return functionObject.year = '20??';
+	functionObject.divideByTwo() = function(){ 
+		//console.log(divideByTwo);
+		return divideByTwo /= 2;
+		};
+	functionObject.prototype.helloWorld() = function(){ return 'Hello World'; };
+}
