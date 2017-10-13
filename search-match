@@ -1,0 +1,18 @@
+function search(arr, val){
+	var boolean = false;				//default 
+
+	var match = arr
+		.forEach(checker)
+		.call(this.match, val);			//call this.array and passes the value to check for match
+
+	function checker(ele,val){			//for each element in the given array.
+		if(!Array.isArray(ele)){		//checks for nested Array
+			if(ele === val){
+				boolean = true;
+			}
+		}
+		checker(ele[0],val);			//looks at 0th element if Array	
+	}
+
+	return boolean;						//returns the boolean value after going through every element in the array
+}
