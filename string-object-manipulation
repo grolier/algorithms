@@ -1,0 +1,90 @@
+function map(object,function){ 						          //looping in array
+	for(var i = 0; i < object.length; i += 1){
+		(function map(ele, function){
+			return function(ele);
+		})(object[i]);
+	}
+	return object;
+}
+
+function doubler(ele){							                //doubler
+	return ele * 2;
+}
+
+map(object, function(ele){ return ele * 3;});       //tripler?
+
+
+function filter(object, function){				          //filter
+	var newArray=[];
+	return object.map(function(object, function){
+		if(filter(object[i]){
+			newArray.push(object[ele]);
+		}
+	});
+}
+
+function contains(object, ele){				
+	if(Array.isArray(object) && object !== null){     //function for arrays
+		return object.map(function(){
+			if(object.indexOf(ele)){
+				return true;
+			}
+			return false;
+		}
+	}else{										                        //function for objects
+		for (var k in object){
+			if(Object.hasOwnProperty(k)){
+				if(contains(object[k]) === ele){
+					return true;
+				}
+				return false;
+			}
+		}
+	}
+}
+
+function countWords(string,function){
+	var sum = 1;
+	string.map(function(string,function){ 
+		if(countWords(string[i]) === ' '){
+			sum += 1;
+		}
+	}
+	return sum;
+}
+
+function reduce(object, start, function){
+	var current= start;
+	return object.map(function(object, function){
+		current = function(start, object[ele]);
+	});
+	return current;
+}
+
+function sum(object){
+	return object.map(function(object, function){
+		return object[i] + object[i+1];
+	})
+}
+
+function every(object, function){
+	return object.reduce(function(object,1,function){
+		if(function(object)){
+			return true;
+		}
+		return false;
+	});
+}
+
+function any(object function){
+	return object.reduce(function(object,switch,function){
+		switch = false;
+		if(function(object)){
+			switch = true;
+		}
+		return switch;
+	})
+
+}
+
+
