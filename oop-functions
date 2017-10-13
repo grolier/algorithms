@@ -1,0 +1,12 @@
+function dontSpillTheBeans(secret){
+	return secret;
+}
+
+dontSpillTheBeans.prototype.getSecret = function(){
+	return this.secret;
+}
+
+dontSpillTheBeans.prototype.setSecret = function(){
+	this.secret = "I'm taking my mother on vacation for her 60th Birthday!";
+	return this.secret;
+}
