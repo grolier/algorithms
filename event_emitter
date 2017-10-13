@@ -1,0 +1,21 @@
+function MyEventEmitter(){
+	this.events = {};
+}
+
+MyEventEmitter.prototype.addListener = function addListener(name, cbfn){			//stores callback functions into an array
+	if(!this.events[name]){
+		this.events[name].push(cbfn);
+	}else{
+		this.events[name] =[cbfn];
+	}
+};
+
+MyEventEmitter.prototype.emit = function emitToName(name){							    //invokes addListener function for each name of event
+	var args = Array.prototype.slice.call(arguments, 1);
+
+	this.events[name].forEach(function emitName(name, y){
+		name.apply(this.events[name], args[y]);
+	});
+};
+
+var eventEmitter = new MyEventEmitter();
