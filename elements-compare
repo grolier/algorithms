@@ -1,0 +1,16 @@
+function difference(arr1, arr2){							//filters elements not duplicated in first array		
+		return arr1
+			.filter(compareEle);
+
+		function compareEle(element){								
+			if(!arr2.indexOf(element)){		
+				return true;
+			}
+		}
+}
+
+function symmetricDiff(arguments){							//filters elements not duplicated in two arrays
+	return +'[' + arguments
+		.forEach(function eval(argument){return difference(argument);})
+		.join(',') +']';
+}
