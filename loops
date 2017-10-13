@@ -1,0 +1,122 @@
+function repeat(string, number){
+	var newStr = '';
+	while (number > 0){
+		newStr += string;
+		number -= 1;
+	}
+	return newStr;
+}
+
+function sum(array){
+	var sum = 0;
+	for(var i = 0; i < array.length; i += 1){
+		sum += array[i];
+	}
+	return sum;
+}
+
+function join(array, delimiter){
+	var str = '';
+
+	if(delimiter === undefined || delimiter === null){
+		delimiter = '';
+	}
+
+	for(var i = 0; i< array.length; i += 1){
+		str += array[i] + delimiter;
+	}
+	return str;
+}
+
+
+function gridGenerator(number){
+	var str = '';
+
+	if (number === 0){
+		return str;
+	}
+	for(var i = 1; i < number*number; i += 1){
+		if( i % 2 === 0){
+			str += ' ';
+		}
+		str += '#';	
+	}
+	for (var j= 1; j< str.length; j += number){
+		console.log(str.slice(0,number) + '\n');
+	}
+}
+
+function paramifyObjectKeys(object){
+	var str = '';
+	var sorted = [];
+
+
+	for (var k in object){
+		if(object.hasOwnProperty(k)){
+			sorted.push([k,object[k]]); //makes an array
+		}
+	}
+
+	function compare(n, n1){ //comparison function
+		return n>n1;
+	}
+
+	function arrange (sorted, compare){ //rearrange array to sort unsorted
+		var swap = true;
+
+		while(swap){
+			swap = false;
+			var position = 0;
+			while(sorted.length-1 > position){
+				if(compare(sorted[position][1], sorted[position +1][1])){
+					var high = sorted[position];
+					sorted[position] = sorted[position +1];
+					sorted[position + 1] = high;
+					swap = true;
+				}
+				position +=1;
+			}
+		}
+		return sorted;
+	}
+
+	for(var i = 0; i < sorted.length; i += 1){
+		if(Array.isArray(sorted[i])){
+			str += sorted[i][0] + '=' + sorted[i][1] + '&';
+		}
+	}
+	return str.slice(0,str.length-1);
+}
+
+function paramify(object){
+	var str = '';
+
+	for(var k in object){
+		if(object.hasOwnProperty(k)){
+			if(object.length === 1){
+				str += k + '=' + object[k];
+			}else {
+				str += k + '=' + object[k] +'&';
+			}
+		}
+	}
+	return str;
+
+}
+
+function renameFiles(array){
+	var newArray =[];
+
+	for(var i = 0; i < array.length; i += 1){
+		if(newArray[array[i]]){
+			var n = 1
+			newArray.push(array[i]+'('+n+')');
+			n += 1;
+		}else{
+			newArray.push(array[i]);
+		}
+	}
+
+	return newArray;
+
+}
