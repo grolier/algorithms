@@ -1,0 +1,36 @@
+
+
+function Mammal(name){										        //constructor
+	this.name = name;
+	this.offspring =[];
+}
+
+Mammal.prototype.sayHello = function(name){					//sayHello function
+		return 'My name is' + this.name '!';
+};
+
+Mammal.prototype.haveBaby = function(){						  //haveBaby function
+	var child = Object.create(Mammal.prototype);
+	child.name = "Baby " + this.name;
+	this.offspring = function(child){
+		if(offspring[child] !== child){
+			return this.offspring.push(child);
+		}
+	};
+};
+
+function Cat(name, color){									        //calls on prototype properties from instance of Mammal
+	Mammal.call(this, name);	
+	this.color = color;
+}
+
+Cat.prototype = Object.create(Mammal.prototype);			//prototype chain to Mammal instance
+
+Cat.prototype.constructor = Cat; 							        //restores Cat function as constructor
+  
+
+Cat.prototype.haveBaby= function(color){					    //Cat specific haveBaby function
+	var newCat = new Cat('Baby ' + this.name, color);
+	this.offspring.push(newCat);
+	return newCat;
+};
