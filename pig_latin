@@ -1,0 +1,33 @@
+function translate(string){
+	return string
+		.toLowerCase()
+		.split(' ')
+		.map(translateWord)
+		.map(addAY)
+		.join(',');
+}
+
+function translateWord(words){
+	var vowels = { a:'a', e:'e', i:'i', o:'o', u:'u'};	
+		for (var k in vowels){
+			if(checkPhoneme(vowels[k],words)){										//phoneme 'qu'
+				return words.slice(words.indexOf(vowels[k])+1).concat(words.slice(0,words.indexOf(vowels[k]+1)));
+			}else if(checkVowel(vowels[k],words)){									//vowel				
+				return words;
+			}else{																	//all other consonants
+				return words.slice(words.indexOf(vowels[k])).concat(words.slice(0,words.indexOf(vowels[k])));
+			}
+		}
+}
+
+function checkVowel(vowel,words){
+		return words.slice(0,1) === vowel;
+}
+
+function checkPhoneme(vowels,words){
+		return words.indexOf(vowels.u) === (words.indexOf('q') + 1);
+}
+
+function addAY(word){
+		return word += 'ay';
+}
