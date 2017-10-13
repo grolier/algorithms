@@ -1,0 +1,91 @@
+function Game(){														//constructor function
+	this.game={};
+	this.playersGuess;
+	this.pastGuesses=[];
+	this.winningNumber = function(){ return generateWinningNumber();};
+
+}
+
+Game.prototype.playersGuessSubmission = function playersGuessSubmission(this.playersGuess){	//validation for this.playersGuess
+	if(typeof this.playersGuess !== "number"){															
+		alert("That is an invalid this.playersGuess.");										//this.playersGuess type cannot be NaN and not a number 
+	}else if(this.playersGuess < 1 || this.playersGuess > 100){
+		alert("That is an invalid this.playersGuess. Please this.playersGuess a number between 1 and 100.")									//has to be a this.playersGuess between 1 and 100 (inclusive)
+	}else if(this.checkGuess.length < 5)											//stores this.playersGuess up to 5
+		this.pastGuesses.push[this.playersGuess];
+	}else{
+		checkGuess(this.playersGuess);															//calls the checkGuess function
+	}
+};
+
+Game.prototype.checkGuess = function checkGuess(this.playersGuess, this.winningNumber){
+	if(pastGuesses.length === 5){											//checks the this.playersGuess of past guesses 
+		return "You lose.";
+	}else if(pastGuesses.indexOf(this.playersGuess)){									//checks for duplicates and alerts
+		this.pastGuesses.push(this.playersGuess);
+		return "You have already guessed that this.playersGuess.";
+	}else if(this.difference === 0){										//if this.playersGuess is exact match
+		return "You Win!";
+	}else{																	//else alert message by how far off the this.playersGuess is off
+		if(this.difference <= 10){										
+			return "You're burning up!";
+		}else if(this.difference <= 25 && this.difference > 10){
+			return "You're lukewarm.";
+		}else if(this.difference <= 50 && this.difference > 25){
+			return "You're a bit chilly.";
+		}else if(this.difference <= 100 && this.difference > 50){
+			return "You're ice cold.";
+		}else{
+			return "Something is off, try again.";
+		}
+	}
+
+};
+
+Game.prototype.difference = function difference(isLower(this.playersGuess,this.winningNumber)){
+	if(this.isLower){
+		return this.winningNumber-this.playersGuess;
+	}else{
+		return this.playersGuess-this.winningNumber;
+	}
+};
+
+Game.prototype.isLower = function isLower(this.playersGuess, this.winningNumber){
+	return this.playersGuess < this.winningNumber;
+};
+
+Game.prototype.provideHint = function provideHint(){
+
+};
+
+function generateWinningNumber(){
+	var rb = ((Math.random()*100)+1).toString();					      	//inclusive of 100
+
+	if (retNum(rb[rb.indexOf('.')-1]) % 2 === 0){
+		return Math.floor(retNum(rb.slice(0,rb.indexOf('.'))));			//rounddown if even
+	}else{
+		return Math.ceiling(retNum(rb.slice(0,rb.indexOf('.'))));		//roundup if odd
+	}
+}
+
+function retNum(str){
+	return Number(str);
+}
+
+function newGame(Game){
+	var newGame = Object.create(Game.prototype);
+	newGame.__proto__=Game.prototype;
+	return newGame;
+}
+
+function shuffle(array){
+	var l = array.length;
+
+	while(l){
+		var t= Math.floor(Math.random()*l -= 1),q;	                //scoped within while
+		array[t]=q;			//random value in the array
+		array[q]=array[l];	//
+		array[l]=array[t];	
+	}
+	return array;	
+}
