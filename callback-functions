@@ -1,0 +1,9 @@
+function callAll(object, array){ 					//array of functions
+	return array
+		.map(passObj)
+		.call(callAll);
+}
+
+function passObj(object, func){
+		return func(object);
+}
