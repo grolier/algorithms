@@ -1,0 +1,33 @@
+function objectGet(getAccess){								            //1. factory function
+	var myObj = Object.create(objectGet.prototype);				
+	myObj.getAccess = getAccess;
+	return myObj;
+}
+
+
+objectGet.prototype = { getAccess: function(){								
+	return this.getAccess
+	}
+}
+
+var d = objectGet('data');
+
+function objectGet(getAccess){								            //2. constructor function may cause unintended global usage without 'var'
+	this.getAccess = getAccess;
+}
+
+objectGet.prototype = { getAccess: function(){
+	return this.getAccess;
+	}
+}
+
+var c = new objectGet('data');
+
+function genericFunc(Ctr){                                //3. generic function
+	var myObj = Object.create(Ctr.prototype);
+	var arg = Array.prototype.slice.call(arguments, 1);     //arguments = scope 'this' //1
+	Ctr.bind(myObj,arg);								                    //deprecated in jQuery 3.0
+	return myObj;
+}
+
+var o = genericFunc(objectGet, 'data');
