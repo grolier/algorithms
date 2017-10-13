@@ -1,0 +1,71 @@
+ function concatString(arguments){
+ 	return Array.prototype
+ 		.slice
+ 		.call(arguments,1)
+ 		.join(',');
+}
+
+function yourFunctionRunner(functions){
+	var func = Array.prototype.slice.call(arguments,1).join(',');
+
+	return func
+		.map(function call(func){return call(func);});		//not sure about this return func
+		.join('');
+}
+
+function makeAdder(base){
+	return function(num){
+		return base + num;
+	};
+}
+
+function once(fn){
+	var status = false;
+
+	return once(status){
+		if(status === false){
+			fn();
+			status = true;
+		}
+	};
+}
+
+
+function createObjectWithClosures(){
+	var sum = 0;
+
+	return {
+		oneIncrementer: function one(){ sum +=1;},
+		tensIncrementer: function two(){ sum += 10;},
+		getValue: function getVal(){ return sum;},
+		setValue: function setVal(value){ return sum + value;}
+	};
+}
+
+function guestListFns(guestArray, secretCode){
+	var finalGuests =[];
+
+	var checker = function checker(guest, sum){
+		return function checker(sum){
+			if(sum === secretCode){
+				return '"' + guest + '"';
+			}else{
+				return 'Secret-Code: Invalid';
+			}
+		};
+	};
+
+	for(var i = 0; i < guestArray.length; i += 1){
+		function cloGuest(){
+			return checker(guest,sum);
+		})
+		cloGuest(guestArray[i]);
+	}
+	}
+	return finalGuests;
+}
+
+
+function generateGuestLists(guestListFns, secretCode){
+	return guestListFns.map(function checkNames(checker, secretCode){ return checker(secretCode);};
+}
