@@ -1,0 +1,14 @@
+function keyAdder(object){							
+	return function(object){
+
+		for(var k in object){
+			if(object.hasOwnProperty(k) && object[k] === number){
+				return object.reduce(function(prev, curr){
+					return prev + curr;
+				},0);
+			}
+		}
+
+	};
+
+}
