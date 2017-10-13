@@ -1,0 +1,13 @@
+function reject(arr, func){
+	var rejArr = [];
+
+	if(arr.length === 0){
+		return rejArr;
+	}else{
+		if(func(arr[0]) === false){
+			rejArr.push(arr[0]);
+		}
+		reject(arr.slice(1));
+	}
+	return rejArr;
+}
