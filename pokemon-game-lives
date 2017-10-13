@@ -1,0 +1,34 @@
+function Pokemon(name, health, attackbonus){
+	this.name = name;
+	this.health = health;
+	this.attackBonus = attackbonus;
+}
+
+Pokemon.prototype.biteAttack = function(num){
+	return function(num){
+		return this.attackBonus + num;
+	}
+}
+
+Pokemon.prototype.isDefeated = function(){
+	if(this.health >= 1){
+		return false;
+	}else{
+		return true;
+	}
+}
+
+function simulateBattle(name, name1, firstmover){
+	var name = new Pokemon;
+	var name1 = new Pokemon;
+
+	if(firstmover === Pokemon.name){ //figure out which player is first mover
+		Pokemon.biteAttack();
+		if(Pokemon.name.health>=0){ //game still valid if health is over 1
+			simulateBattle(); 		//NEED TO FIGURE OUT HOW TO invoke this properly
+			this.name.health -= 2;
+		}
+		return this.name1 + 'Wins!'; //game is over, second player wins if health drops below 0
+	}
+	return this.name + 'Wins!';
+}
