@@ -1,0 +1,9 @@
+function filter(array, func){
+	var newArr =[];
+	array.forEach(function(newArr,func){
+		if(func(array)){
+			newArr.push(array);
+		}
+	});
+	return newArr;
+}
