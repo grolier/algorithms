@@ -1,0 +1,33 @@
+function vowelsCount(str){
+	var vowels = 'aeiou';
+	var evalStr = str.toLowerCase();
+	var sum = 0;
+
+	if(evalStr === undefined || evalStr === ''){		//if undefined and or otherwise empty, retun sum default value of 0
+		return sum;
+	}else{
+		var obj = {};	
+														//creates empty object to house string values
+		for (var i =0; i < evalStr.length; i +=1){		//iterates through string
+
+			if(obj[evalStr[i]]){						
+				obj[evalStr[i]] += 1;					//adds 1 if string already has a key of that value
+			}else{
+				obj[evalStr[i]] = 1;					//creates value as key if not already in object
+			}
+
+		}
+	
+		for(var k in obj){								//looks at every key in object
+			if(obj.hasOwnProperty(k)){					//safely inspects those keys with property values
+				for (var j = 0; j < vowels.length; j += 1){
+					if(vowels[j]===k){							//if the key exists in vowels (see line 2),then add the value to sum
+						sum += obj[k];	
+					}
+				}
+			}
+		}
+		return sum;										//return sum
+	}
+											
+}
